@@ -1,0 +1,24 @@
+type Query {
+    film(id: ID!): Film
+    films: [Film!]!
+}
+
+type Mutation {
+    createFilm(title: String!): Film!
+}
+
+type Subscription {
+    filmCreated: Film!
+}
+
+type Film {
+    id: ID!
+    title: String!
+    actors: [Actor!]!
+}
+
+type Actor {
+    id: ID!
+    firstName: String!
+    lastName: String
+}
