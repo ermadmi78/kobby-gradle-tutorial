@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen)](https://github.com/ermadmi78/kobby-gradle-tutorial/blob/main/LICENSE)
+[![Discussions](https://img.shields.io/badge/Discussions-On%20GitHub-blue)](https://github.com/ermadmi78/kobby-gradle-tutorial/discussions)
 
 ### Kobby Gradle Tutorial
 
