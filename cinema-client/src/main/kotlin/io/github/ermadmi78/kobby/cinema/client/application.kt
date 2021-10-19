@@ -3,10 +3,8 @@ package io.github.ermadmi78.kobby.cinema.client
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
-import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.CinemaAdapter
-import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.CinemaMapper
+import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.*
 import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.adapter.ktor.CinemaCompositeKtorAdapter
-import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.cinemaContextOf
 import io.ktor.client.*
 import io.ktor.client.features.websocket.*
 import kotlinx.coroutines.Dispatchers
@@ -166,6 +164,46 @@ class Application : CommandLineRunner {
                 println("  ${actor.firstName} ${actor.lastName}")
             }
         }
+
+        println()
+        println("******************************************************************")
+        println("**        When we just need to build a query string             **")
+        println("******************************************************************")
+        println()
+
+        val (myQuery, myQueryArgs) = buildCinemaQuery {
+            film(3) {
+                id()
+                title()
+                actors {
+                    id()
+                    firstName()
+                    lastName()
+                }
+            }
+        }
+        println(myQuery)
+        println(myQueryArgs)
+        println()
+
+        val (myMutation, myMutationArgs) = buildCinemaMutation {
+            createFilm("My film") {
+                id()
+                title()
+            }
+        }
+        println(myMutation)
+        println(myMutationArgs)
+        println()
+
+        val (mySubscription, miSubscriptionArgs) = buildCinemaSubscription {
+            filmCreated {
+                id()
+                title()
+            }
+        }
+        println(mySubscription)
+        println(miSubscriptionArgs)
 
         println()
         println("##################################################################")
