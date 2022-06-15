@@ -2,7 +2,7 @@ description = "Cinema API"
 
 plugins {
     kotlin("jvm")
-    id("io.github.ermadmi78.kobby") version "1.4.1"
+    id("io.github.ermadmi78.kobby") version "1.5.1"
 }
 
 dependencies {
