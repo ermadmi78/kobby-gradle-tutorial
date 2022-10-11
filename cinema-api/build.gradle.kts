@@ -2,13 +2,13 @@ description = "Cinema API"
 
 plugins {
     kotlin("jvm")
-    id("io.github.ermadmi78.kobby") version "1.6.0"
+    id("io.github.ermadmi78.kobby") version "2.0.0"
 }
 
 dependencies {
     // Add this dependency to enable Jackson annotation generation in DTO classes
-    compileOnly("com.fasterxml.jackson.core:jackson-annotations:2.12.2")
+    compileOnly("com.fasterxml.jackson.core:jackson-annotations:2.13.4")
 
     // Add this dependency to enable default Ktor adapters generation
-    compileOnly("io.ktor:ktor-client-cio:1.5.4")
+    compileOnly("io.ktor:ktor-client-cio:2.1.2")
 }

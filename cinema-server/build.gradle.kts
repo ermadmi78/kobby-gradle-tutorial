@@ -29,11 +29,11 @@ dependencies {
     implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.2")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
 }

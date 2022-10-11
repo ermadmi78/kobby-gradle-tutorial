@@ -6,7 +6,8 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.*
 import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.adapter.ktor.CinemaCompositeKtorAdapter
 import io.ktor.client.*
-import io.ktor.client.features.websocket.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.websocket.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -214,7 +215,7 @@ class Application : CommandLineRunner {
 
     private fun createKtorAdapter(): CinemaAdapter {
         // Create Ktor http client
-        val client = HttpClient {
+        val client = HttpClient(CIO) {
             install(WebSockets)
         }
 
