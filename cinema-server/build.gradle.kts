@@ -1,35 +1,22 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 description = "Cinema Server"
 
 plugins {
     kotlin("jvm")
     id("org.jetbrains.kotlin.plugin.spring")
-    id("org.springframework.boot") version "2.5.2"
+    id("org.springframework.boot") version "2.7.10"
 }
 
 dependencies {
     implementation(project(":cinema-api"))
 
-    implementation(
-        "com.graphql-java-kickstart:" +
-                "graphql-kickstart-spring-boot-starter-webflux:11.1.0"
-    )
-    implementation(
-        "com.graphql-java-kickstart:" +
-                "graphql-kickstart-spring-boot-starter-tools:11.1.0"
-    )
-    implementation(
-        "com.graphql-java-kickstart:" +
-                "graphiql-spring-boot-starter:11.1.0"
-    )
-    implementation(
-        "com.graphql-java-kickstart:" +
-                "playground-spring-boot-starter:11.1.0"
-    )
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:14.0.0")
 
-    implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
+    implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.5")
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))

@@ -1,15 +1,7 @@
 graphql:
   tools:
     schema-location-pattern: io/github/ermadmi78/kobby/cinema/api/cinema.graphqls
-
----
-graphiql:
-  enabled: true
-  cdn:
-    enabled: false
-
----
-graphql.playground:
-  enabled: true
-  cdn:
-    enabled: false
+  playground:
+    enabled: true
+    cdn:
+      enabled: false
