@@ -1,7 +1,8 @@
-graphql:
-  tools:
-    schema-location-pattern: io/github/ermadmi78/kobby/cinema/api/cinema.graphqls
-  playground:
-    enabled: true
-    cdn:
-      enabled: false
+spring:
+  graphql:
+    schema:
+      locations: classpath*:io/github/ermadmi78/kobby/cinema/api/**
+    websocket:
+      path: /graphql
+    graphiql:
+      enabled: true
