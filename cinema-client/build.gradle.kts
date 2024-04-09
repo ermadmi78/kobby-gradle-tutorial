@@ -16,8 +16,7 @@ dependencies {
     implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.4")
-    implementation("com.fasterxml.jackson.module:jackson-module-parameter-names:2.15.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 

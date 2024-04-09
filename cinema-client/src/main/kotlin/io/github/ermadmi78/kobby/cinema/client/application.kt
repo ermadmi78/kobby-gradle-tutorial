@@ -1,8 +1,5 @@
 package io.github.ermadmi78.kobby.cinema.client
 
-import com.fasterxml.jackson.annotation.JsonCreator
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.*
 import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.adapter.ktor.CinemaCompositeKtorAdapter
 import io.ktor.client.*
@@ -15,7 +12,6 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import kotlin.reflect.KClass
 
 /**
  * Created on 16.10.2021
@@ -216,31 +212,19 @@ class Application : CommandLineRunner {
     private fun createKtorAdapter(): CinemaAdapter {
         // Create Ktor http client
         val client = HttpClient(CIO) {
+            expectSuccess = true
             install(WebSockets)
         }
 
-        // Create Jackson object mapper
-        val mapper = jacksonObjectMapper()
-            .registerModule(ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
-
-        // Create default implementation of CinemaAdapter
-        // Note, you can write your own implementation
+        // Default implementation of CinemaAdapter.
+        // Note, you can write your own implementation.
         return CinemaCompositeKtorAdapter(
             client,
             "http://localhost:8080/graphql",
-            "ws://localhost:8080/graphql",
-            object : CinemaMapper {
-                override fun serialize(value: Any): String =
-                    mapper.writeValueAsString(value)
-
-                override fun <T : Any> deserialize(content: String, contentType: KClass<T>): T =
-                    mapper.readValue(content, contentType.java)
-            }
+            "ws://localhost:8080/graphql"
         ) {
             println(">> ${it.query}")
-            if (!it.variables.isNullOrEmpty()) {
-                println(">> ${it.variables}")
-            }
+            println(">> ${it.variables}")
         }
     }
 }

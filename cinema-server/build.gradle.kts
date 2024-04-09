@@ -20,7 +20,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.data:spring-data-commons")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
