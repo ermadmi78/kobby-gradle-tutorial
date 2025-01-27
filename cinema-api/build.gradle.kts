@@ -3,7 +3,7 @@ description = "Cinema API"
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
-    id("io.github.ermadmi78.kobby") version "4.0.3"
+    id("io.github.ermadmi78.kobby") version "4.1.1"
 }
 
 kotlin {
@@ -15,5 +15,5 @@ dependencies {
     compileOnly("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     // Add this dependency to enable default Ktor adapters generation
-    compileOnly("io.ktor:ktor-client-cio:2.3.9")
+    compileOnly("io.ktor:ktor-client-cio:2.3.13")
 }
