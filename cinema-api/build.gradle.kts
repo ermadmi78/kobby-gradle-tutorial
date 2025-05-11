@@ -3,7 +3,7 @@ description = "Cinema API"
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
-    id("io.github.ermadmi78.kobby") version "5.0.0-beta.01"
+    id("io.github.ermadmi78.kobby") version "5.0.0"
 }
 
 kotlin {
