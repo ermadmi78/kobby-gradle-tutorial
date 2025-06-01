@@ -48,8 +48,8 @@ class Application : CommandLineRunner {
         launch(Dispatchers.Default) {
             context.subscription {
                 filmCreated {
-                    id()
-                    title()
+                    id
+                    title
                 }
             }.subscribe {
                 subscribed.complete()
@@ -73,12 +73,12 @@ class Application : CommandLineRunner {
 
         val result = context.query {
             film(id = 0L) {
-                id()
-                title()
+                id
+                title
                 actors {
-                    id()
-                    firstName()
-                    lastName()
+                    id
+                    firstName
+                    lastName
                 }
             }
         }
@@ -98,8 +98,8 @@ class Application : CommandLineRunner {
 
         val first = context.mutation {
             createFilm("First") {
-                id()
-                title()
+                id
+                title
             }
         }
 
@@ -115,8 +115,8 @@ class Application : CommandLineRunner {
 
         val second = context.mutation {
             createFilm("Second") {
-                id()
-                title()
+                id
+                title
             }
         }
 
@@ -132,8 +132,8 @@ class Application : CommandLineRunner {
 
         val third = context.mutation {
             createFilm("Third") {
-                id()
-                title()
+                id
+                title
             }
         }
 
@@ -149,12 +149,12 @@ class Application : CommandLineRunner {
 
         val allFilms = context.query {
             films {
-                id()
-                title()
+                id
+                title
                 actors {
-                    id()
-                    firstName()
-                    lastName()
+                    id
+                    firstName
+                    lastName
                 }
             }
         }
@@ -174,12 +174,12 @@ class Application : CommandLineRunner {
 
         val (myQuery, myQueryArgs) = buildCinemaQuery {
             film(3) {
-                id()
-                title()
+                id
+                title
                 actors {
-                    id()
-                    firstName()
-                    lastName()
+                    id
+                    firstName
+                    lastName
                 }
             }
         }
@@ -189,8 +189,8 @@ class Application : CommandLineRunner {
 
         val (myMutation, myMutationArgs) = buildCinemaMutation {
             createFilm("My film") {
-                id()
-                title()
+                id
+                title
             }
         }
         println(myMutation)
@@ -199,8 +199,8 @@ class Application : CommandLineRunner {
 
         val (mySubscription, miSubscriptionArgs) = buildCinemaSubscription {
             filmCreated {
-                id()
-                title()
+                id
+                title
             }
         }
         println(mySubscription)
