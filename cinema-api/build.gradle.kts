@@ -4,7 +4,7 @@ description = "Cinema API"
 
 plugins {
     kotlin("jvm")
-    id("io.github.ermadmi78.kobby") version "5.2.0"
+    id("io.github.ermadmi78.kobby") version "5.2.3"
 }
 
 kotlin {
