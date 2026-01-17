@@ -5,7 +5,7 @@ description = "Cinema Server"
 plugins {
     kotlin("jvm")
     id("org.jetbrains.kotlin.plugin.spring")
-    id("org.springframework.boot") version "3.2.4"
+    id("org.springframework.boot") version "3.5.9"
 }
 
 kotlin {
