@@ -1,3 +1,5 @@
+directive @resolve on FIELD_DEFINITION
+
 type Query {
     film(id: ID!): Film
     films: [Film!]!
@@ -14,7 +16,7 @@ type Subscription {
 type Film {
     id: ID!
     title: String!
-    actors: [Actor!]!
+    actors: [Actor!]! @resolve
 }
 
 type Actor {
