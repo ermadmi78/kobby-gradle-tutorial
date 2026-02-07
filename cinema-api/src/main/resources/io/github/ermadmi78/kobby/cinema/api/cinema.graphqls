@@ -1,5 +1,9 @@
+directive @resolve on FIELD_DEFINITION
+
+scalar Long
+
 type Query {
-    film(id: ID!): Film
+    film(id: Long!): Film
     films: [Film!]!
 }
 
@@ -12,13 +16,13 @@ type Subscription {
 }
 
 type Film {
-    id: ID!
+    id: Long!
     title: String!
-    actors: [Actor!]!
+    actors: [Actor!]! @resolve
 }
 
 type Actor {
-    id: ID!
+    id: Long!
     firstName: String!
     lastName: String
 }
