@@ -15,4 +15,9 @@ dependencies {
 
     // Add this dependency to enable default Ktor adapters generation
     compileOnly("io.ktor:ktor-client-cio:2.3.13")
+
+    // todo
+    compileOnly("com.graphql-java:graphql-java:24.3")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.8.1")
 }
