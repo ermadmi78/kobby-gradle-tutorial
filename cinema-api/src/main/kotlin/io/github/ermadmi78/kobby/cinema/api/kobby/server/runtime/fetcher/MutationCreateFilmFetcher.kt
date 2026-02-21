@@ -3,7 +3,7 @@ package io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.fetcher
 import graphql.schema.DataFetcher
 import graphql.schema.DataFetchingEnvironment
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.data.FilmData
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaMutationResolver
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.MutationResolutionModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.future.asCompletableFuture
@@ -16,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
  * @author Dmitry Ermakov (ermadmi78@gmail.com)
  */
 class MutationCreateFilmFetcher(
-    private val resolver: CinemaMutationResolver,
+    private val resolver: MutationResolutionModel,
     private val coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext
 ) : DataFetcher<CompletableFuture<FilmData>> {
     override fun get(environment: DataFetchingEnvironment): CompletableFuture<FilmData> {

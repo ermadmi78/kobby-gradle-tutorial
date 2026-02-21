@@ -6,10 +6,10 @@ import graphql.schema.DataFetchingEnvironment
 import graphql.schema.GraphQLCodeRegistry
 import graphql.schema.GraphQLScalarType
 import graphql.schema.GraphQLSchema
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaFilmResolver
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaMutationResolver
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaQueryResolver
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaSubscriptionResolver
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.FilmResolutionModel
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.MutationResolutionModel
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.QueryResolutionModel
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.SubscriptionResolutionModel
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.DEFAULT_CINEMA_CONTEXT_PROVIDER
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.CinemaScalar
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.code.MutationCode
@@ -25,10 +25,10 @@ import kotlin.coroutines.CoroutineContext
  */
 
 fun buildCinemaSchema(
-    queryResolver: CinemaQueryResolver,
-    mutationResolver: CinemaMutationResolver,
-    subscriptionResolver: CinemaSubscriptionResolver,
-    filmResolver: CinemaFilmResolver,
+    queryResolver: QueryResolutionModel,
+    mutationResolver: MutationResolutionModel,
+    subscriptionResolver: SubscriptionResolutionModel,
+    filmResolver: FilmResolutionModel,
     scalarID: GraphQLScalarType = CinemaScalar.GraphQLID,
     scalarString: GraphQLScalarType = CinemaScalar.GraphQLString,
     coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext = DEFAULT_CINEMA_CONTEXT_PROVIDER

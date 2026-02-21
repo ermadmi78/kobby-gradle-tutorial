@@ -10,11 +10,8 @@ import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.CinemaData
 data class FilmData(
     val id: Long? = null,
     val title: String? = null,
-    val __extensions: Map<String, Any?> = emptyMap()
+    val __localContext: Map<String, Any?> = emptyMap()
 ) : CinemaData {
-    override operator fun get(property: String): Any? = when (property) {
-        "id" -> id
-        "title" -> title
-        else -> __extensions[property]
-    }
+    override operator fun get(property: String): Any? =
+        __localContext[property]
 }

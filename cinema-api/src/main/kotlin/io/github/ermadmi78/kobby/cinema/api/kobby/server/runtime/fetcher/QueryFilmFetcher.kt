@@ -1,9 +1,10 @@
 package io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.fetcher
 
+import graphql.execution.DataFetcherResult
 import graphql.schema.DataFetcher
 import graphql.schema.DataFetchingEnvironment
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.data.FilmData
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaQueryResolver
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.QueryResolutionModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.future.asCompletableFuture
@@ -16,15 +17,20 @@ import kotlin.coroutines.CoroutineContext
  * @author Dmitry Ermakov (ermadmi78@gmail.com)
  */
 class QueryFilmFetcher(
-    private val resolver: CinemaQueryResolver,
+    private val resolver: QueryResolutionModel,
     private val coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext
-) : DataFetcher<CompletableFuture<FilmData?>> {
-    override fun get(environment: DataFetchingEnvironment): CompletableFuture<FilmData?> {
+) : DataFetcher<CompletableFuture<DataFetcherResult<FilmData?>>> {
+    override fun get(environment: DataFetchingEnvironment): CompletableFuture<DataFetcherResult<FilmData?>> {
         val argId: Long = environment.getArgument("id") ?: error("Cannot find argument: id")
 
         val context = coroutineContextProvider(environment)
         return CoroutineScope(context).async {
-            resolver.film(argId)
+            val data = resolver.film(argId)
+
+            //TODO extract errors and extensions from environment
+            DataFetcherResult.newResult<FilmData?>()
+                .data(data)
+                .build()
         }.asCompletableFuture()
     }
 }

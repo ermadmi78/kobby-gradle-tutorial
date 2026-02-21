@@ -7,6 +7,6 @@ import io.github.ermadmi78.kobby.cinema.api.kobby.kotlin.entity.Actor
  *
  * @author Dmitry Ermakov (ermadmi78@gmail.com)
  */
-interface CinemaFilmResolver {
+interface FilmResolutionModel {
     suspend fun actors(): List<Actor>
 }

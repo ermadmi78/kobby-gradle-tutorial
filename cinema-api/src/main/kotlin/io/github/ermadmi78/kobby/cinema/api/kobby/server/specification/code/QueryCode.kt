@@ -3,7 +3,7 @@ package io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.code
 import graphql.schema.DataFetchingEnvironment
 import graphql.schema.FieldCoordinates.coordinates
 import graphql.schema.GraphQLCodeRegistry
-import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.CinemaQueryResolver
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.QueryResolutionModel
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.fetcher.QueryFilmFetcher
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.fetcher.QueryFilmsFetcher
 import kotlin.coroutines.CoroutineContext
@@ -16,7 +16,7 @@ import kotlin.coroutines.CoroutineContext
 internal object QueryCode {
     fun register(
         builder: GraphQLCodeRegistry.Builder,
-        resolver: CinemaQueryResolver,
+        resolver: QueryResolutionModel,
         coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext
     ) {
         builder

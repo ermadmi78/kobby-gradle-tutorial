@@ -11,10 +11,10 @@ import kotlin.coroutines.CoroutineContext
  * @author Dmitry Ermakov (ermadmi78@gmail.com)
  */
 
-suspend fun getCinemaEnvironment(): DataFetchingEnvironment =
-    currentCoroutineContext()[CinemaEnvironmentContext.Key]?.environment
-        ?: error("Cinema environment is not configured")
+suspend fun cinemaResolutionEnvironment(): CinemaResolutionEnvironment =
+    currentCoroutineContext()[CinemaResolutionEnvironment.Key]
+        ?: error("Cinema resolution environment is not configured")
 
 val DEFAULT_CINEMA_CONTEXT_PROVIDER: (DataFetchingEnvironment) -> CoroutineContext = {
-    Dispatchers.Default + CinemaEnvironmentContext(it)
+    Dispatchers.Default + CinemaResolutionEnvironment(it)
 }
