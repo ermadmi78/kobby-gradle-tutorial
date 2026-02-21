@@ -21,8 +21,8 @@ class CinemaResolutionEnvironment(
 
     private var context: MutableMap<String, Any?>? = null
 
-    private var errors: MutableList<GraphQLError>? = null
-    private var extensions: MutableMap<String, Any?>? = null
+    private var graphQLErrors: MutableList<GraphQLError>? = null
+    private var graphQLExtensions: MutableMap<Any, Any?>? = null
 
     suspend fun getFromContext(key: String): Any? = mutex.withLock {
         context?.get(key)
@@ -36,9 +36,38 @@ class CinemaResolutionEnvironment(
     }
 
     suspend fun addGraphQLError(error: GraphQLError): Unit = mutex.withLock {
-        if (errors == null) {
-            errors = mutableListOf()
+        if (graphQLErrors == null) {
+            graphQLErrors = mutableListOf()
         }
-        errors!!.add(error)
+        graphQLErrors!!.add(error)
+    }
+
+    suspend fun addGraphQLErrors(errors: Iterable<GraphQLError>): Unit = mutex.withLock {
+        if (graphQLErrors == null) {
+            graphQLErrors = mutableListOf()
+        }
+        graphQLErrors!!.addAll(errors)
+    }
+
+    suspend fun extractGraphQLErrors(): List<GraphQLError>? = mutex.withLock {
+        graphQLErrors?.let { ArrayList(it) }
+    }
+
+    suspend fun putGraphQLExtension(key: String, value: Any?): Any? = mutex.withLock {
+        if (graphQLExtensions == null) {
+            graphQLExtensions = mutableMapOf()
+        }
+        graphQLExtensions!!.put(key, value)
+    }
+
+    suspend fun putGraphQLExtensions(extensions: Map<String, Any?>): Unit = mutex.withLock {
+        if (graphQLExtensions == null) {
+            graphQLExtensions = mutableMapOf()
+        }
+        graphQLExtensions!!.putAll(extensions)
+    }
+
+    suspend fun extractGraphQLExtensions(): Map<Any, Any?>? = mutex.withLock {
+        graphQLExtensions?.let { LinkedHashMap(it) }
     }
 }

@@ -4,6 +4,7 @@ import graphql.schema.DataFetchingEnvironment
 import graphql.schema.FieldCoordinates.coordinates
 import graphql.schema.GraphQLCodeRegistry
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.MutationResolutionModel
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.CinemaResolutionAspect
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.fetcher.MutationCreateFilmFetcher
 import kotlin.coroutines.CoroutineContext
 
@@ -16,6 +17,7 @@ internal object MutationCode {
     fun register(
         builder: GraphQLCodeRegistry.Builder,
         resolver: MutationResolutionModel,
+        aspect: CinemaResolutionAspect,
         coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext
     ) {
         builder

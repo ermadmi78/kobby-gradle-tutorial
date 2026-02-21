@@ -10,7 +10,9 @@ import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.FilmReso
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.MutationResolutionModel
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.QueryResolutionModel
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.model.resolver.SubscriptionResolutionModel
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.CinemaResolutionAspect
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.DEFAULT_CINEMA_CONTEXT_PROVIDER
+import io.github.ermadmi78.kobby.cinema.api.kobby.server.runtime.DEFAULT_CINEMA_RESOLUTION_ASPECT
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.CinemaScalar
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.code.MutationCode
 import io.github.ermadmi78.kobby.cinema.api.kobby.server.specification.code.QueryCode
@@ -31,11 +33,12 @@ fun buildCinemaSchema(
     filmResolver: FilmResolutionModel,
     scalarID: GraphQLScalarType = CinemaScalar.GraphQLID,
     scalarString: GraphQLScalarType = CinemaScalar.GraphQLString,
+    aspect: CinemaResolutionAspect = DEFAULT_CINEMA_RESOLUTION_ASPECT,
     coroutineContextProvider: (DataFetchingEnvironment) -> CoroutineContext = DEFAULT_CINEMA_CONTEXT_PROVIDER
 ): GraphQLSchema {
     val codeRegistry: GraphQLCodeRegistry.Builder = GraphQLCodeRegistry.newCodeRegistry()
-    QueryCode.register(codeRegistry, queryResolver, coroutineContextProvider)
-    MutationCode.register(codeRegistry, mutationResolver, coroutineContextProvider)
+    QueryCode.register(codeRegistry, queryResolver, aspect, coroutineContextProvider)
+    MutationCode.register(codeRegistry, mutationResolver, aspect, coroutineContextProvider)
 
     return GraphQLSchema.newSchema()
         .query(QueryType.build(scalarID))
